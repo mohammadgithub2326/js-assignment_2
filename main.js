@@ -8,21 +8,30 @@ console.log("Answer 1 -----------------------------------");
 // If it exists multiple time then return an array with all the positions.
 // If the number doesn't exist then return -1;
 
-function search_all(input_array, search_element)
-{
-	var found = [];
+function searchNumberInArray(arr, number) {
+  let positions = [];
 
-	for(var i = 0 ; i < input_array.length ; i++)
-	{
-		if(input_array[i] == search_element) found.push(i);
-	}
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === number) {
+      positions.push(i);
+    }
+  }
 
-	if(found.length < 1) return -1;
-	else if(found.length == 1) return found[0];
-	else return found;
+  if (positions.length === 0) {
+    return -1;
+  } else if (positions.length === 1) {
+    return positions[0];
+  } else {
+    return positions;
+  }
 }
 
-console.log(search_all([1, 2, 3, 4, 5, 1, 3], 1));
+// Example usage:
+const numbers = [5, 2, 7, 2, 8, 2, 3];
+const numberToSearch = 2;
+
+const result = searchNumberInArray(numbers, numberToSearch);
+console.log(result); 
 
 //===================================================================================
 
@@ -37,20 +46,18 @@ console.log("Answer 2 -----------------------------------");
 // 54
 // 5
 
-function pattern_1(value)
-{
-	for(var i = 0 ; i < value ; i++)
-	{
-		var temp = "";
-		for(var j = value ; j > i ; j--)
-		{
-			temp = temp + j;
-		}
-		console.log(temp);
-	}
+function printPattern(rows) {
+  for (let i = 0; i < rows; i++) {
+    let row = '';
+    for (let j = rows; j > i; j--) {
+      row += j;
+    }
+    console.log(row);
+  }
 }
 
-pattern_1(8);
+// Example usage:
+printPattern(5);
 
 //===================================================================================
 
@@ -59,13 +66,15 @@ console.log("Answer 3 -----------------------------------");
 
 // Write a JavaScript program to sort an array in ascending order
 
-function sort_asscending(array)
-{
-	array.sort(function(a, b) { return a - b; });
-	return array;
+function sortArrayAscending(arr) {
+  return arr.sort((a, b) => a - b);
 }
 
-console.log(sort_asscending([3, 2, 1, 4, 5, 45]));
+// Example usage:
+const unsortedArray = [5, 2, 8, 1, 3];
+const sortedArray = sortArrayAscending(unsortedArray);
+console.log(sortedArray); // Output: [1, 2, 3, 5, 8]
+
 
 //===================================================================================
 
@@ -75,22 +84,24 @@ console.log("Answer 4 -----------------------------------");
 // Write a JavaScript program to check if two strings are anagrams.
 // Anagram string are such two strings which can be rearranged to create one another.
 
-function anagram(str_1, str_2)
-{
-	if(str_1.length == str_2.length)
-	{
-		for(var i = 0 ; i < anagram.length ; i++)
-		{
-			if(!str_2.includes(str_1[i])) return false;
-		}
+function areAnagrams(str1, str2) {
+  if (str1.length !== str2.length) {
+    return false;
+  }
 
-		return true;
-	}
-	return false;
+  const sortedStr1 = str1.split('').sort().join('');
+  const sortedStr2 = str2.split('').sort().join('');
+
+  return sortedStr1 === sortedStr2;
 }
 
-if(anagram("HELLO", "JELLO")) console.log("True");
-else console.log("False");
+// Example usage:
+const string1 = "listen";
+const string2 = "silent";
+
+const result = areAnagrams(string1, string2);
+console.log(result); // Output: true
+
 
 //===================================================================================
 
@@ -99,15 +110,15 @@ console.log("Answer 5 -----------------------------------");
 
 // Write a JavaScript program to reverse a string without using inbuilt methods.
 
-function reverse_string(str)
-{
-	var temp = "";
-	for(var i = str.length - 1 ; i >= 0 ; i-- )
-	{
-		temp = temp + str[i];
-	}
-
-	return temp;
+function reverseString(inputString) {
+  let reversedString = '';
+  for (let i = inputString.length - 1; i >= 0; i--) {
+    reversedString += inputString.charAt(i);
+  }
+  return reversedString;
 }
 
-console.log(reverse_string("Hello"));
+// Example usage:
+const originalString = "Hello, World!";
+const reversedString = reverseString(originalString);
+console.log(reversedString); // Output: "!dlroW ,olleH"
